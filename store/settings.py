@@ -126,10 +126,17 @@ CACHES = {
 # }
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "store_db",
+        "USER": "store_username",
+        "PASSWORD": "store_password",
+        "HOST": "localhost",
+        "PORT": "5432",
+        'OPTIONS': {
+            'options': '-c search_path=your_custom_schema,public',
+        },
+    },
 }
 
 
@@ -236,7 +243,7 @@ STRIPE_SECRET_KEY = 'sk_test_51NYqBEC1CVvm2VpxpN45DKNnle37YW67gxSIqTijEMNlJH2eAm
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 3,
-    
+
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
